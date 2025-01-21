@@ -1,0 +1,88 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(189, 200, 212);
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+main {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+main h1 {
+  padding-top: 30px;
+  font-size: 30px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 50px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+form button {
+  margin-top: 30px;
+  padding: 8px 15px;
+  font-size: 16px;
+  background-color: rgb(210, 210, 186);
+}
+
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin: 0px auto 30px auto;
+}
+
+th {
+  padding: 12px 20px;
+  border: solid 1px rgb(224, 168, 168);
+}
+
+td {
+  padding: 12px 20px;
+  border-right: solid 1px rgb(151, 144, 144);
+}
+
+th {
+  background-color: #B3C8CF;
+  font-weight: bold;
+}
+
+tbody button {
+  background-color: rgb(201, 89, 89);
+  margin: 5px;
+  padding: 7px 15px;
+  font-size: 16px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #E5E1DA;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #F1F0E8;
+}
