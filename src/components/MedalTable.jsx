@@ -32,7 +32,7 @@ const renderTableRows = (countryList, handleCountryList) => {
         <td>{country.goldMedalCount}</td>
         <td>{country.silverMedalCount}</td>
         <td>{country.bronzeMedalCount}</td>
-        <td><button onClick={() => { handleCountryList.removeCounty(country.countryName) }}>삭제</button></td>
+        <td><button onClick={() => { handleCountryList.removeCountry(country.countryName) }}>삭제</button></td>
       </tr>
     )
   })

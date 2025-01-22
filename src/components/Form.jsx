@@ -2,21 +2,34 @@ import { useState } from "react";
 
 
 const Form = ({ handleCountryList }) => {
-  //onchane로 벨류값 받아서, 저장버튼 누르면 배열에 저장
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleCountryList.addCounty({
-      countryName: country,
-      goldMedalCount: gold,
-      silverMedalCount: silver,
-      bronzeMedalCount: bronze,
-    })
-  }
-
   const [country, setCountry] = useState("");
   const [gold, setGold] = useState(0);
   const [silver, setSilver] = useState(0);
   const [bronze, setBonze] = useState(0);
+
+
+  //onchane로 벨류값 받아서, 저장버튼 누르면 배열에 저장
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const buttonName = e.nativeEvent.submitter.name
+    const country = {
+      countryName: country,
+      goldMedalCount: gold,
+      silverMedalCount: silver,
+      bronzeMedalCount: bronze,
+    }
+    switch (buttonName) {
+      case 'add':
+        handleCountryList.addCountry(country)
+        break;
+      case 'update': {
+        handleCountryList.updateCountry(country)
+        break;
+      }
+    }
+
+  }
+
 
   console.log(country, gold, silver, bronze)
 
