@@ -1,102 +1,68 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import Table from './components/MedalTable.jsx'
+import Form from './components/Form.jsx'
 import './App.css'
 
+
 function App() {
+
+  const [countryList, setConList] = useState([
+    {
+      countryName: "한국",
+      goldMedalCount: 10,
+      silverMedalCount: 10,
+      bronzeMedalCount: 30,
+    },
+    {
+      countryName: "중국",
+      goldMedalCount: 3,
+      silverMedalCount: 10,
+      bronzeMedalCount: 30,
+    },
+    {
+      countryName: "일본",
+      goldMedalCount: 7,
+      silverMedalCount: 10,
+      bronzeMedalCount: 30,
+    }
+  ])
+
+  const handleCountryList = {
+
+    addCounty: (newCountry) => {
+      setConList([...countryList, newCountry])
+    },
+
+
+    removeCounty: (targetCountryName) => {
+      alert("삭제테스트")
+      setConList(countryList.filter((country) => {
+        return country.countryName !== targetCountryName;
+      }))
+    },
+  }
 
   return (
     <>
       <main>
         <h1>2024 파리 올림픽</h1>
+
+        {/* {입력폼섹션} */}
         <section>
-          <form action="/submit">
-            <div className='input-group'>
-              <label id="country">국가명</label>
-              <input type="text" id="country" name="country" placeholder="한글 국가명을 입력하세요" required />
-            </div>
-
-            <div className='input-group'>
-              <label id="gold">금메달</label>
-              <input type="number" id="gold" name="gold" min="0" placeholder="금메달 수" required />
-            </div>
-
-            <div className='input-group'>
-              <label id="silver">은메달</label>
-              <input type="number" id="silver" name="silver" min="0" placeholder="은메달 수" required />
-            </div>
-
-            <div className='input-group'>
-              <label id="bronze">동메달</label>
-              <input type="number" id="bronze" name="bronze" min="0" placeholder="동메달 수" required />
-            </div>
-            <button type="submit">국가추가</button>
-            <button type="submit">업데이트</button>
-          </form>
+          <Form handleCountryList={handleCountryList} />
         </section >
 
+        {/* {테이블섹션} */}
         <section>
-          <table>
-            <thead>
-              <tr>
-                <th>국가명</th>
-                <th>금메달</th>
-                <th>은메달</th>
-                <th>동메달</th>
-                <th>액션</th>
-              </tr>
-            </thead>
-            {/* tbody가 렌더링되면 될듯요 */}
-            <tbody>
-              <tr>
-                <td>한국</td>
-                <td>10</td>
-                <td>8</td>
-                <td>8</td>
-                <button>삭제</button>
-              </tr>
-              <tr>
-                <td>한국</td>
-                <td>10</td>
-                <td>8</td>
-                <td>8</td>
-                <button>삭제</button>
-              </tr>
-              <tr>
-                <td>한국</td>
-                <td>10</td>
-                <td>8</td>
-                <td>8</td>
-                <button>삭제</button>
-              </tr>
-              <tr>
-                <td>한국</td>
-                <td>10</td>
-                <td>8</td>
-                <td>8</td>
-                <button>삭제</button>
-              </tr>
-              <tr>
-                <td>한국</td>
-                <td>10</td>
-                <td>8</td>
-                <td>8</td>
-                <button>삭제</button>
-              </tr>
-              <tr>
-                <td>한국</td>
-                <td>10</td>
-                <td>8</td>
-                <td>8</td>
-                <button>삭제</button>
-              </tr>
-            </tbody>
-          </table>
+          <Table countryList={countryList} handleCountryList={handleCountryList} />
         </section>
+
       </main>
     </>
-
   )
+  // 서밋버튼 누르면 국가명, 금메달,은베달, 동메달 객체저장
 }
 
 export default App
