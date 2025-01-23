@@ -28,7 +28,7 @@ const renderTableRows = (countryList, handleCountryList) => {
   return countryList.map((country) => {
     return (
       <tr key={country.countryName}>
-        <td> {country.countryName}</td>
+        <td>{country.countryName}</td>
         <td>{country.goldMedalCount}</td>
         <td>{country.silverMedalCount}</td>
         <td>{country.bronzeMedalCount}</td>

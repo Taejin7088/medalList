@@ -33,16 +33,17 @@ function App() {
 
   const handleCountryList = {
     isCountryInList: (targetCountryName) => {
-      //countryList 배열에 해당 이름을 가진 객체가 있으면 True를 반환
       return countryList.some((county) => county.countryName === targetCountryName)
     },
 
     addCountry: (newCountry) => {
       if (handleCountryList.isCountryInList(newCountry.countryName)) {
         alert("포함되어있는 도시")
-        return;
+        return false;
       }
       setConList([...countryList, newCountry])
+      alert("추가완료")
+      return true;
     },
 
     removeCountry: (targetCountryName) => {
@@ -51,14 +52,24 @@ function App() {
       }))
     },
 
-    updateCountry: (country) => {
-      if (!handleCountryList.isCountryInList(country.countryName)) {
+    updateCountry: (targetCountry) => {
+      if (!handleCountryList.isCountryInList(targetCountry.countryName)) {
         alert("포함안된 도시")
-        return;
+        return false;
         //해당하는값이 없으면 리턴하고 종료 있으면 false값 넘어오면 ! 이프문 실행
         //이프문 넘어오면 도시 이름 기준 필터해서 세로운 배열 만들어서 set해주기
       }
-
+      setConList(countryList.map(country => {
+        if (country.countryName !== targetCountry.countryName) { return country }
+        return {
+          countryName: targetCountry.countryName,
+          goldMedalCount: targetCountry.goldMedalCount,
+          silverMedalCount: targetCountry.silverMedalCount,
+          bronzeMedalCount: targetCountry.bronzeMedalCount,
+        }
+      }))
+      alert("변경완료")
+      return true;
     }
   }
 
@@ -84,15 +95,3 @@ function App() {
 }
 
 export default App
-
-{/* <div className="card">
-<button onClick={() => setCount((count) => count + 1)}>
-  count is {count}
-</button>
-<p>
-  Edit <code>src/App.jsx</code> and save to test HMR
-</p>
-</div>
-<p className="read-the-docs">
-Click on the Vite and React logos to learn more
-</p> */}

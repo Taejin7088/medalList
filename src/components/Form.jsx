@@ -9,25 +9,31 @@ const Form = ({ handleCountryList }) => {
 
 
   //onchane로 벨류값 받아서, 저장버튼 누르면 배열에 저장
+  const clearInput = () => {
+    setCountry("")
+    setGold(0)
+    setSilver(0)
+    setBonze(0)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const buttonName = e.nativeEvent.submitter.name
-    const country = {
+    const newCountry = {
       countryName: country,
       goldMedalCount: gold,
       silverMedalCount: silver,
       bronzeMedalCount: bronze,
     }
-    switch (buttonName) {
-      case 'add':
-        handleCountryList.addCountry(country)
-        break;
-      case 'update': {
-        handleCountryList.updateCountry(country)
-        break;
-      }
+    handleCountryList.addCountry(newCountry) && clearInput()
+  }
+  const handleUpdate = () => {
+    const updateCountry = {
+      countryName: country,
+      goldMedalCount: gold,
+      silverMedalCount: silver,
+      bronzeMedalCount: bronze,
     }
-
+    handleCountryList.updateCountry(updateCountry) && clearInput()
   }
 
 
@@ -38,26 +44,26 @@ const Form = ({ handleCountryList }) => {
       <form onSubmit={handleSubmit}>
         <div className='input-group'>
           <label id="country">국가명</label>
-          <input onChange={(e) => { setCountry(e.target.value) }} type="text" id="country" placeholder="한글 국가명을 입력하세요" required />
+          <input value={country} onChange={(e) => { setCountry(e.target.value) }} type="text" id="country" placeholder="한글 국가명을 입력하세요" required />
         </div>
 
         <div className='input-group'>
           <label id="gold">금메달</label>
-          <input onChange={(e) => { setGold(e.target.value) }} type="number" id="gold" min="0" placeholder="금메달 수" required />
+          <input value={gold} onChange={(e) => { setGold(e.target.value) }} type="number" id="gold" min="0" placeholder="금메달 수" required />
         </div>
 
         <div className='input-group'>
           <label id="silver">은메달</label>
-          <input onChange={(e) => { setSilver(e.target.value) }} type="number" id="silver" min="0" placeholder="은메달 수" required />
+          <input value={silver} onChange={(e) => { setSilver(e.target.value) }} type="number" id="silver" min="0" placeholder="은메달 수" required />
         </div>
 
         <div className='input-group'>
           <label id="bronze">동메달</label>
-          <input onChange={(e) => { setBonze(e.target.value) }} type="number" id="bronze" min="0" placeholder="동메달 수" required />
+          <input value={bronze} onChange={(e) => { setBonze(e.target.value) }} type="number" id="bronze" min="0" placeholder="동메달 수" required />
         </div>
-        <button name="add">국가추가</button>
-        <button name="update">업데이트</button>
-      </form>
+        <button type="submit" name="add">국가추가</button>
+        <button type="button" onClick={handleUpdate} name="update">업데이트</button>
+      </form >
     </>
   )
 }

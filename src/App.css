@@ -57,17 +57,14 @@ table {
   margin: 0px auto 30px auto;
 }
 
-th {
-  padding: 12px 20px;
-  border: solid 1px rgb(224, 168, 168);
-}
-
 td {
   padding: 12px 20px;
   border-right: solid 1px rgb(151, 144, 144);
 }
 
 th {
+  padding: 12px 20px;
+  border: solid 1px rgb(224, 168, 168);
   background-color: #B3C8CF;
   font-weight: bold;
 }
