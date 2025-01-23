@@ -41,7 +41,20 @@ input {
   padding: 8px;
   width: 100%;
   box-sizing: border-box;
-  font-size: 14px;
+}
+
+.sort-options {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  /* 요소 간 간격 최소화 */
+}
+
+.option {
+  border: solid rgb(192, 186, 186) 1px;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 5px;
 }
 
 form button {

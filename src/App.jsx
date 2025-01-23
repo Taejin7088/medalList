@@ -101,17 +101,22 @@ function App() {
       <main>
         <h1>2024 파리 올림픽</h1>
         {/* {입력폼섹션} */}
-        <section>
-          <div className='sort-options'>
+
+        <div className='sort-options'>
+          <div className='option'>
             <label htmlFor="sortByGold">금메달 수 정렬</label>
             <input defaultChecked={true} type="radio" name="SortOption" onChange={() => {
               handleSortOption("goldMedal")
             }} />
+          </div>
+          <div className='option'>
             <label htmlFor="sortByTotal">총메달 수 정렬</label>
             <input type="radio" name="SortOption" onChange={() => {
               handleSortOption("totalMedal")
             }} />
           </div>
+        </div>
+        <section>
           <Form handleCountryList={handleCountryList} />
         </section >
 
@@ -119,7 +124,7 @@ function App() {
         <section>
           <Table countryList={countryList} handleCountryList={handleCountryList} />
         </section>
-      </main>
+      </main >
     </>
   )
 }
