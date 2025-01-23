@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Table from './components/MedalTable.jsx'
@@ -12,13 +12,13 @@ import { ssrModuleExportsKey } from 'vite/module-runner'
 function App() {
   //처음 컨트리 리스트가 선언될때 로컬스토리지에서 읽어온값으로 선언되면 될듯요
   //업데이트 되거나 삭제되거나 추가될때 로컬스토리지를 조작하는 로직 같이 실행!
-  const [sortOption, setSortOption] = useState("goldMedal")
+  let sortOption = "goldMedal"
   const [countryList, setConList] = useState([
     {
       countryName: "한국",
       goldMedalCount: 10,
-      silverMedalCount: 10,
-      bronzeMedalCount: 30,
+      silverMedalCount: 1,
+      bronzeMedalCount: 1,
     },
     {
       countryName: "중국",
@@ -34,7 +34,6 @@ function App() {
     }
   ])
 
-
   const handleCountryList = {
     isCountryInList: (targetCountryName) => {
       return countryList.some((county) => county.countryName === targetCountryName)
@@ -44,17 +43,17 @@ function App() {
       switch (sortOption) {
         case 'goldMedal':
           conlist.sort((a, b) => {
-            return b.goldMedalCount - a.goldMedalCount
+            return Number(b.goldMedalCount) - Number(a.goldMedalCount)
           })
           break;
+
         case 'totalMedal':
           conlist.sort((a, b) => {
-            return (b.goldMedalCount + b.silverMedalCount + b.bronzeMedalCount) - (a.goldMedalCount + a.silverMedalCount + a.bronzeMedalCount)
+            return (Number(b.goldMedalCount) + Number(b.silverMedalCount) + Number(b.bronzeMedalCount)) - (Number(a.goldMedalCount) + Number(a.silverMedalCount) + Number(a.bronzeMedalCount))
           })
           break;
       }
     },
-
 
     addCountry: (newCountry) => {
       if (handleCountryList.isCountryInList(newCountry.countryName)) {
@@ -62,12 +61,12 @@ function App() {
         return false;
       }
       const newConList = [...countryList, newCountry]
+
       handleCountryList.sortByMedal(newConList)
       setConList(newConList)
       alert("추가완료")
       return true;
     },
-
 
     removeCountry: (targetCountryName) => {
       setConList(countryList.filter((country) => {
@@ -75,12 +74,12 @@ function App() {
       }))
     },
 
-
     updateCountry: (targetCountry) => {
       if (!handleCountryList.isCountryInList(targetCountry.countryName)) {
         alert("포함 되어있지 않은 나라")
         return false;
       }
+
       const updateConList = countryList.map(country => {
         if (country.countryName !== targetCountry.countryName) { return country }
         return {
@@ -90,6 +89,7 @@ function App() {
           bronzeMedalCount: targetCountry.bronzeMedalCount,
         }
       })
+
       handleCountryList.sortByMedal(updateConList)
       setConList(updateConList)
       alert("변경완료")
@@ -97,14 +97,16 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const countriesListToSort = [...countryList]
-    handleCountryList.sortByMedal(countriesListToSort)
-    setConList(countriesListToSort)
-  }, [sortOption])
+  const handleSortOption = (option) => {
+    console.log("매개변수", option)
+    sortOption = option
+    console.log("변수", sortOption)
+    const tempConList = [...countryList]
+    console.log(tempConList)
+    handleCountryList.sortByMedal(tempConList)
+    setConList(tempConList)
+  }
 
-  //로컬스토리지 저장(처음 도시리스트 선언할때 읽어와서 초기화)
-  //도시 리스트 바뀔때마다 로컬스토리지에 써주기(useEffect()쓰면될듯)
   return (
     <>
       <main>
@@ -114,12 +116,12 @@ function App() {
           <div>
             <label htmlFor="sortByGold">금메달 수 정렬</label>
             <input type="radio" id="sortByGold" name="SortOption" onChange={() => {
-              setSortOption("goldMedal")
+              handleSortOption("goldMedal")
 
             }} />
             <label htmlFor="sortByTotal">총메달 수 정렬</label>
             <input type="radio" id="sortByTotal" name="SortOption" onChange={() => {
-              setSortOption("totalMedal")
+              handleSortOption("totalMedal")
             }} />
           </div>
           <Form handleCountryList={handleCountryList} />
