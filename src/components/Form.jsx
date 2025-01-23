@@ -7,8 +7,7 @@ const Form = ({ handleCountryList }) => {
   const [silver, setSilver] = useState(0);
   const [bronze, setBonze] = useState(0);
 
-
-  //onchane로 벨류값 받아서, 저장버튼 누르면 배열에 저장
+  //입력폼을 초기화시켜주는 함수
   const clearInput = () => {
     setCountry("")
     setGold(0)
@@ -16,6 +15,7 @@ const Form = ({ handleCountryList }) => {
     setBonze(0)
   }
 
+  //폼 제출시 실행
   const handleSubmit = (e) => {
     e.preventDefault();
     const newCountry = {
@@ -25,8 +25,9 @@ const Form = ({ handleCountryList }) => {
       bronzeMedalCount: bronze,
     }
     handleCountryList.addCountry(newCountry) && clearInput()
-
   }
+
+  //업데이트버튼클릭시 실행 
   const handleUpdate = () => {
     const updateCountry = {
       countryName: country,

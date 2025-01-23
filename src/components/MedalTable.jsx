@@ -1,6 +1,7 @@
 
 //정보가 추가되면 이 객체 베열에서 요소 추가되면됨
 function Table({ countryList, handleCountryList }) {
+  //countryList에 아무것도 없으면 테이블 출력안함
   if (countryList.length === 0) return <></>
   return (
     <>
@@ -14,7 +15,6 @@ function Table({ countryList, handleCountryList }) {
             <th>액션</th>
           </tr>
         </thead>
-        {/* tbody가 렌더링되면 될듯요 */}
         <tbody>
           {renderTableRows(countryList, handleCountryList)}
         </tbody>
@@ -23,7 +23,7 @@ function Table({ countryList, handleCountryList }) {
   )
 }
 
-
+//countryList를 기준으로 tbody부분의 tr생성
 const renderTableRows = (countryList, handleCountryList) => {
   return countryList.map((country) => {
     return (
