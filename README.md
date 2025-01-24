@@ -28,16 +28,11 @@
 # 설치방법
 ```
  1. 리포지토리 클론
-    ```bash
-    git clone https://github.com/username/project-name.git
-    ```
+   # git clone https://github.com/username/project-name.git
 2. 의존성 설치
-    ```bash
-    yarn install
-    ```
+   # yarn install
 3. 개발 서버 실행
-    ```bash
-    yarn dev
+   # yarn dev
 ```
 
 
