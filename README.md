@@ -28,7 +28,7 @@
 # 설치방법
 ```
  1. 리포지토리 클론
-   # git clone https://github.com/username/project-name.git
+   # git clone https://github.com/Taejin7088/medalList
 2. 의존성 설치
    # yarn install
 3. 개발 서버 실행
