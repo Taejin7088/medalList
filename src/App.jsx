@@ -116,7 +116,7 @@ function App() {
     <>
       <main>
         <h1>2024 파리 올림픽</h1>
-        {/* {입력폼섹션} */}
+        {/* {정렬옵션} */}
         <div className="sort-options">
           <div className="option">
             <label htmlFor="sortByGold">금메달 수 정렬</label>
@@ -140,6 +140,8 @@ function App() {
             />
           </div>
         </div>
+        {/* {입력폼섹션} */}
+
         <section>
           <Form handleCountryList={handleCountryList} />
         </section>
