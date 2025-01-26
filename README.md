@@ -57,12 +57,7 @@
 const countryListInLocalStorage = JSON.parse(window.localStorage.getItem(0))
 const [countryList, setConList] = useState(countryListInLocalStorage)
 ```
-- countryList State의 업데이트가 있을때마다 로컬스토리지 업데이트
-```
- useEffect(() => {
-    window.localStorage.setItem(0, JSON.stringify(countryList));
-  }, [countryList]);
-```
+- countryList State의 추가,삭제,업데이트가 있을때마다 로컬스토리지 업데이트
 
 ### countryList 조작 함수 모음
 - App.jsx : handleCountryLis{}
